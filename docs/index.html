@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PC2 Tracks</title>
+  <meta name="description" content="Assetto Corsa circuits converted for Project CARS 2. Free downloads, installed with JSGME.">
+  <meta property="og:title" content="PC2 Tracks">
+  <meta property="og:description" content="Assetto Corsa circuits converted for Project CARS 2. Free downloads, installed with JSGME.">
+  <meta property="og:image" content="images/hungaroring-1920.jpg">
+  <meta name="theme-color" content="#E4EAEF">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316212C'/%3E%3Crect x='14' y='6' width='4' height='20' rx='1' fill='%23C2352B'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mist: '#E4EAEF', paper: '#F4F6F8', ink: '#16212C', slate: '#596776',
+            kerb: '#C2352B', kerbdeep: '#A12A22', grass: '#4E6A38', line: '#CBD4DC'
+          },
+          fontFamily: {
+            display: ['Archivo', 'system-ui', 'sans-serif'],
+            body: ['"Hanken Grotesk"', 'system-ui', 'sans-serif']
+          },
+          spacing: { gutter: '1.25rem' }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --spring: cubic-bezier(.2, .9, .25, 1.05);
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
+      /* depth: base (page) -> raised (panels) -> floating (button, hero) */
+      --shadow-raised: 0 1px 1px rgba(22, 33, 44, .04), 0 2px 6px -2px rgba(22, 33, 44, .08), 0 18px 40px -22px rgba(31, 52, 77, .28);
+      --shadow-float: 0 1px 2px rgba(22, 33, 44, .06), 0 10px 24px -10px rgba(31, 52, 77, .32), 0 40px 80px -40px rgba(31, 52, 77, .38);
+      --shadow-kerb: 0 1px 2px rgba(161, 42, 34, .25), 0 10px 22px -10px rgba(194, 53, 43, .55);
+    }
+
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Hanken Grotesk', system-ui, sans-serif;
+      line-height: 1.7;
+      color: #16212C;
+      background-color: #E4EAEF;
+      background-image:
+        radial-gradient(1200px 520px at 85% -10%, rgba(255, 214, 186, .45), transparent 60%),
+        radial-gradient(900px 600px at -10% 10%, rgba(178, 200, 222, .55), transparent 60%),
+        radial-gradient(1400px 900px at 50% 120%, rgba(203, 214, 224, .7), transparent 70%);
+      background-attachment: fixed;
+    }
+    /* fine grain over everything, like a printed programme */
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+      opacity: .07; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.13 0 0 0 0 0.17 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .wide { font-family: 'Archivo', system-ui, sans-serif; font-stretch: 125%; letter-spacing: -0.03em; line-height: 1; }
+    .semi-wide { font-family: 'Archivo', system-ui, sans-serif; font-stretch: 112%; letter-spacing: -0.01em; }
+
+    .raised { background: #F4F6F8; box-shadow: var(--shadow-raised); }
+
+    /* hero photo: dark fade for the title + a multiply tint so it sits in the palette */
+    .hero { box-shadow: var(--shadow-float); }
+    .hero-img { transform: scale(1.045); opacity: 0; transition: transform 1.4s var(--ease-out), opacity .9s ease; }
+    .hero-tint { background: #2E4560; mix-blend-mode: multiply; opacity: .32; }
+    .loaded .hero-img { transform: scale(1); opacity: 1; }
+
+    .outline-art { opacity: 0; transform: translateY(10px) scale(.985); transition: transform 1s var(--spring) .35s, opacity .8s ease .35s; }
+    .loaded .outline-art { opacity: 1; transform: none; }
+
+    /* links */
+    .link { color: #16212C; text-decoration: underline; text-decoration-color: rgba(22, 33, 44, .3);
+            text-underline-offset: .22em; text-decoration-thickness: 1px; border-radius: 3px; }
+    .link:hover { text-decoration-color: #C2352B; }
+    .link:active { color: #A12A22; }
+    .link:focus-visible, .btn:focus-visible, summary:focus-visible, .nav-link:focus-visible {
+      outline: 3px solid #16212C; outline-offset: 3px; }
+
+    .nav-link { border-radius: 8px; padding: .35rem .6rem; position: relative; }
+    .nav-link::after { content: ""; position: absolute; left: .6rem; right: .6rem; bottom: .2rem; height: 2px;
+                       background: #C2352B; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--spring); }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .nav-link:active { transform: translateY(1px); }
+
+    /* download button: floats a little on hover, presses on click */
+    .btn { position: relative; isolation: isolate; display: inline-flex; align-items: center; gap: .65rem;
+           border-radius: 12px; transition: transform .35s var(--spring); }
+    .btn::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
+                   box-shadow: 0 2px 4px rgba(161, 42, 34, .25), 0 18px 32px -12px rgba(194, 53, 43, .6);
+                   opacity: 0; transition: opacity .35s ease; }
+    .btn-kerb { background: #C2352B; color: #fff; box-shadow: var(--shadow-kerb); }
+    .btn-kerb:hover { transform: translateY(-2px); }
+    .btn-kerb:hover::before { opacity: 1; }
+    .btn-kerb:active { transform: translateY(0) scale(.98); background: #A12A22; }
+    .btn-plain { color: #16212C; }
+    .btn-plain:hover { transform: translateY(-1px); }
+    .btn-plain:active { transform: scale(.98); }
+
+    details > summary { list-style: none; cursor: pointer; border-radius: 8px; }
+    details > summary::-webkit-details-marker { display: none; }
+    .chev { transition: transform .35s var(--spring); }
+    details[open] .chev { transform: rotate(90deg); }
+    details[open] .reveal { animation: reveal .45s var(--ease-out); }
+    @keyframes reveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+    .step-num { font-variant-numeric: tabular-nums; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-img, .outline-art, .chev, .btn, .nav-link::after { transition: none !important; }
+      .hero-img, .outline-art { opacity: 1; transform: none; }
+      details[open] .reveal { animation: none; }
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased">
+
+  <header class="mx-auto flex max-w-6xl items-center justify-between px-gutter pt-5 pb-4 sm:px-8">
+    <a href="./" class="nav-link -ml-2 flex items-center gap-2.5" aria-label="PC2 Tracks, home">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#16212C"/><rect x="14" y="6" width="4" height="20" rx="1" fill="#C2352B"/></svg>
+      <span class="wide text-[1.05rem] font-bold">PC2 Tracks</span>
+    </a>
+    <nav class="flex items-center gap-1 text-[0.95rem] font-medium text-ink/80">
+      <a class="nav-link" href="#install">How to install</a>
+      <a class="nav-link" id="repo-link" href="#">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- hero -->
+    <section class="mx-auto max-w-6xl px-gutter sm:px-8" aria-labelledby="title">
+      <div class="hero relative isolate overflow-hidden rounded-[22px] bg-ink">
+        <img class="hero-img block h-[68vh] min-h-[420px] max-h-[640px] w-full object-cover object-[35%_60%]"
+             src="images/hungaroring-1920.jpg"
+             srcset="images/hungaroring-960.jpg 960w, images/hungaroring-1920.jpg 1920w"
+             sizes="(min-width: 1152px) 1152px, 100vw"
+             alt="The main straight at the Hungaroring at dusk, with the grandstand on the left and the pit building on the right">
+        <div class="hero-tint absolute inset-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-12">
+          <h1 id="title" class="wide max-w-[13ch] text-[clamp(2.1rem,10.5vw,2.6rem)] font-extrabold text-white sm:text-6xl lg:text-[5.25rem]">Tracks for Project CARS&nbsp;2</h1>
+          <p class="mt-5 max-w-[46ch] text-[1.05rem] leading-[1.6] text-white/85 sm:text-lg">
+            Circuits I've converted from Assetto Corsa and rebuilt with PC2's own materials, lighting, AI and pit lanes.
+            Free to download and installed with JSGME.
+          </p>
+        </div>
+        <p class="absolute right-4 top-4 rounded-full bg-black/35 px-3 py-1 text-[0.8rem] text-white/80 backdrop-blur-sm">Hungaroring, main straight</p>
+      </div>
+    </section>
+
+    <!-- tracks -->
+    <section class="mx-auto max-w-6xl px-gutter pt-20 sm:px-8 sm:pt-28" aria-labelledby="tracks-title">
+      <div class="flex items-baseline justify-between gap-6">
+        <h2 id="tracks-title" class="wide text-3xl font-bold sm:text-4xl">Tracks</h2>
+        <p id="track-count" class="text-[0.95rem] text-slate"></p>
+      </div>
+      <div id="tracks" class="mt-8 space-y-10 sm:mt-10">
+        <noscript>
+          <p class="raised rounded-2xl p-6">The track list needs JavaScript. You can also find every download on the GitHub releases page.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- install -->
+    <section id="install" class="mx-auto max-w-6xl scroll-mt-6 px-gutter pt-24 sm:px-8 sm:pt-32" aria-labelledby="install-title">
+      <div class="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+        <div>
+          <h2 id="install-title" class="wide text-3xl font-bold sm:text-4xl">Installing a track</h2>
+          <p class="mt-5 max-w-[42ch] text-slate">
+            Every download installs the same way. Install.bat runs a plain text PowerShell script you can open and read first,
+            and if you'd rather do it by hand, READ ME FIRST.txt in the download has the manual steps.
+          </p>
+        </div>
+        <ol class="space-y-4">
+          <li class="raised grid grid-cols-[3rem_1fr] gap-4 rounded-2xl p-6 sm:grid-cols-[4rem_1fr] sm:p-7">
+            <span class="step-num wide text-4xl font-extrabold text-ink/25 sm:text-5xl" aria-hidden="true">1</span>
+            <div>
+              <h3 class="semi-wide text-lg font-semibold">Get JSGME and Bootfiles</h3>
+              <p class="mt-1.5 text-slate">You need JSGME in your Project CARS 2 folder and the "_Bootfiles for PC2" mod (V7.0.0.0 or newer) in its MODS folder.</p>
+            </div>
+          </li>
+          <li class="raised grid grid-cols-[3rem_1fr] gap-4 rounded-2xl p-6 sm:grid-cols-[4rem_1fr] sm:p-7">
+            <span class="step-num wide text-4xl font-extrabold text-ink/25 sm:text-5xl" aria-hidden="true">2</span>
+            <div>
+              <h3 class="semi-wide text-lg font-semibold">Unzip and run Install.bat</h3>
+              <p class="mt-1.5 text-slate">Close the game, unzip the download anywhere and double-click Install.bat. It finds your game, copies the track into MODS and adds it to the track list.</p>
+            </div>
+          </li>
+          <li class="raised grid grid-cols-[3rem_1fr] gap-4 rounded-2xl p-6 sm:grid-cols-[4rem_1fr] sm:p-7">
+            <span class="step-num wide text-4xl font-extrabold text-ink/25 sm:text-5xl" aria-hidden="true">3</span>
+            <div>
+              <h3 class="semi-wide text-lg font-semibold">Activate it in JSGME</h3>
+              <p class="mt-1.5 text-slate">Open JSGME and activate Bootfiles first, then the track. If you chose the HUD map, activate that last.</p>
+            </div>
+          </li>
+          <li class="px-1 pt-2 text-[0.95rem] text-slate">To remove a track, deactivate it in JSGME and run Uninstall.bat from the download.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mx-auto mt-28 max-w-6xl px-gutter pb-12 sm:px-8">
+    <div class="border-t border-line pt-8 text-[0.9rem] leading-[1.7] text-slate sm:flex sm:items-start sm:justify-between sm:gap-10">
+      <p class="max-w-[60ch]">
+        Fan-made conversions, free to download. Not affiliated with Slightly Mad Studios, Bandai Namco or Kunos Simulazioni.
+        The original track authors keep all rights to their work.
+      </p>
+      <a class="link mt-4 inline-block sm:mt-0" id="repo-link-footer" href="#">Source on GitHub</a>
+    </div>
+  </footer>
+
+  <template id="track-tpl">
+    <article class="grid items-stretch gap-6 lg:grid-cols-[5fr_7fr] lg:gap-10">
+      <figure class="raised relative flex flex-col overflow-hidden rounded-[22px] p-6 sm:p-10">
+        <div class="flex flex-1 items-center justify-center">
+        <svg class="outline-art block h-auto w-full max-w-[460px]" role="img">
+          <title></title>
+          <path class="runoff" fill="none" stroke="#4E6A38" stroke-opacity=".16" stroke-width="34" stroke-linejoin="round" stroke-linecap="round"/>
+          <path class="tarmac" fill="none" stroke="#16212C" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+          <rect class="sf" width="16" height="76" rx="3" fill="#C2352B" stroke="#F4F6F8" stroke-width="4" paint-order="stroke"/>
+        </svg>
+        </div>
+        <figcaption class="mt-4 flex items-center gap-2 text-[0.85rem] text-slate">
+          <span class="inline-block h-3 w-1 rounded-sm bg-kerb" aria-hidden="true"></span>Start and finish line
+        </figcaption>
+      </figure>
+
+      <div class="flex flex-col py-1 lg:py-4">
+        <h3 class="t-name wide text-[clamp(2.2rem,11vw,3rem)] font-extrabold sm:text-6xl lg:text-[4.5rem]"></h3>
+        <p class="t-place mt-3 text-lg text-slate"></p>
+        <p class="t-summary mt-5 max-w-[56ch]"></p>
+
+        <dl class="t-facts mt-7 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4"></dl>
+
+        <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <a class="t-download btn btn-kerb px-5 py-3.5 font-semibold" href="#">
+            <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 16h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="t-download-label"></span>
+          </a>
+          <a class="t-notes btn btn-plain link py-2 font-medium" href="#">Release notes</a>
+        </div>
+        <p class="t-meta mt-3 text-[0.9rem] text-slate"></p>
+
+        <details class="mt-7 border-t border-line pt-5">
+          <summary class="flex items-center gap-2 font-semibold">
+            <svg class="chev" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            What's in the download
+          </summary>
+          <div class="reveal mt-4 grid gap-6 sm:grid-cols-2">
+            <ul class="t-features space-y-2 text-[0.97rem]"></ul>
+            <div>
+              <h4 class="semi-wide text-[0.97rem] font-semibold">Good to know</h4>
+              <ul class="t-notes-list mt-2 space-y-2 text-[0.95rem] text-slate"></ul>
+            </div>
+          </div>
+          <p class="t-credit mt-5 text-[0.9rem] text-slate"></p>
+        </details>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var heroImg = document.querySelector('.hero-img');
+      function reveal() { requestAnimationFrame(function () { document.body.classList.add('loaded'); }); }
+      if (heroImg.complete) reveal(); else { heroImg.addEventListener('load', reveal); heroImg.addEventListener('error', reveal); }
+      setTimeout(reveal, 1500);
+
+      var dateFmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      var list = document.getElementById('tracks');
+
+      function li(text) { var el = document.createElement('li'); el.textContent = text; el.className = 'flex gap-2.5 before:mt-[0.7em] before:h-1 before:w-1 before:shrink-0 before:rounded-full before:bg-current before:opacity-50 before:content-[\'\']'; return el; }
+
+      function render(data) {
+        var repo = data.repo;
+        var base = 'https://github.com/' + repo;
+        document.getElementById('repo-link').href = base;
+        document.getElementById('repo-link-footer').href = base;
+        var tpl = document.getElementById('track-tpl');
+        var n = data.tracks.length;
+        document.getElementById('track-count').textContent = n === 1 ? '1 track' : n + ' tracks';
+
+        data.tracks.forEach(function (t) {
+          var node = tpl.content.cloneNode(true);
+          var q = function (s) { return node.querySelector(s); };
+          var svg = q('.outline-art');
+          svg.setAttribute('viewBox', t.outline.viewBox);
+          q('svg title').textContent = 'Circuit map of ' + t.name;
+          q('.runoff').setAttribute('d', t.outline.d);
+          q('.tarmac').setAttribute('d', t.outline.d);
+          var s = t.outline.start, sf = q('.sf');
+          sf.setAttribute('x', s.x - 8); sf.setAttribute('y', s.y - 38);
+          // the bar is drawn upright; rotating it by the direction of travel lays it across the track
+          sf.setAttribute('transform', 'rotate(' + s.angle + ' ' + s.x + ' ' + s.y + ')');
+
+          q('.t-name').textContent = t.name;
+          q('.t-place').textContent = t.place;
+          q('.t-summary').textContent = t.summary;
+          var dl = q('.t-facts');
+          t.facts.forEach(function (f) {
+            var wrap = document.createElement('div');
+            var dt = document.createElement('dt'); dt.className = 'text-[0.85rem] text-slate'; dt.textContent = f.label;
+            var dd = document.createElement('dd'); dd.className = 'semi-wide mt-0.5 text-xl font-semibold'; dd.textContent = f.value;
+            wrap.appendChild(dt); wrap.appendChild(dd); dl.appendChild(wrap);
+          });
+
+          var dlUrl = base + '/releases/download/' + t.tag + '/' + t.file;
+          var dlBtn = q('.t-download');
+          dlBtn.href = dlUrl;
+          q('.t-download-label').textContent = 'Download ' + t.name;
+          q('.t-notes').href = base + '/releases/tag/' + t.tag;
+          q('.t-meta').textContent = 'Version ' + t.version + ', updated ' + dateFmt.format(new Date(t.released + 'T12:00:00')) +
+            '. Zip file, ' + t.sizeMB + ' MB.';
+          t.features.forEach(function (f) { q('.t-features').appendChild(li(f)); });
+          t.notes.forEach(function (f) { q('.t-notes-list').appendChild(li(f)); });
+          q('.t-credit').textContent = t.credit;
+          list.appendChild(node);
+        });
+        if (/^YOUR-GITHUB-NAME\//.test(repo)) console.warn('tracks.json: set "repo" to your GitHub name/repo so the download links work.');
+      }
+
+      fetch('tracks.json', { cache: 'no-cache' })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(render)
+        .catch(function () {
+          var p = document.createElement('p');
+          p.className = 'raised rounded-2xl p-6';
+          p.textContent = 'The track list could not be loaded. If you opened index.html straight from your disk, start the local server instead (see README.md), or reload the page.';
+          list.appendChild(p);
+        });
+    })();
+  </script>
+</body>
+</html>

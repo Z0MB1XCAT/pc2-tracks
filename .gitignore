@@ -1,0 +1,10 @@
+# track packages go to GitHub Releases, never into git
+*.zip
+*.7z
+*.bff
+*.dds
+MODS/
+
+# local preview
+temporary screenshots/
+node_modules/
