@@ -251,7 +251,11 @@
         Fan-made conversions, free to download. Not affiliated with Slightly Mad Studios, Bandai Namco or Kunos Simulazioni.
         Project CARS and its logo are trademarks of their owners, and the original track authors keep all rights to their work.
       </p>
-      <a class="link mt-4 inline-block sm:mt-0" id="repo-link-footer" href="#">Source on GitHub</a>
+      <ul class="mt-4 flex shrink-0 flex-wrap gap-x-5 gap-y-2 sm:mt-0 sm:flex-col sm:items-end">
+        <li><a class="link" id="terms-link-footer" href="#">Terms of use</a></li>
+        <li><a class="link" id="license-link-footer" href="#">Code license (MIT)</a></li>
+        <li><a class="link" id="repo-link-footer" href="#">Source on GitHub</a></li>
+      </ul>
     </div>
   </footer>
 
@@ -405,6 +409,8 @@
         var base = 'https://github.com/' + repo;
         document.getElementById('repo-link').href = base;
         document.getElementById('repo-link-footer').href = base;
+        document.getElementById('terms-link-footer').href = base + '/blob/main/TRACK-TERMS.md';
+        document.getElementById('license-link-footer').href = base + '/blob/main/LICENSE';
         var tpl = document.getElementById('track-tpl');
         var n = data.tracks.length;
         document.getElementById('track-count').textContent = n === 1 ? '1 track' : n + ' tracks';

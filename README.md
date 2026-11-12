@@ -46,4 +46,10 @@ These are fan-made conversions, free to download. Not affiliated with Slightly M
 Simulazioni. Project CARS and its logo are trademarks of their owners, and the original track authors keep all
 rights to their work.
 
+## License
+
+- **Code** (the website, the installer scripts and the preview tools) is under the [MIT License](LICENSE).
+- **Tracks** (the downloads) are covered by the [track terms of use](TRACK-TERMS.md): anyone with a legal copy of
+  Project CARS 2 can use them, but please link to the download page instead of re-uploading them.
+
 Maintainer notes (adding tracks, updating the site) are in [MAINTAINING.md](MAINTAINING.md).
