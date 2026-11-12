@@ -4,7 +4,7 @@ These terms cover the track downloads (the zip files on the Releases page and ev
 installer scripts). The code in this repository, including the installer scripts, is under the MIT License in
 [LICENSE](LICENSE) instead.
 
-> **Business use is still being confirmed with the original track authors.** Until this note is removed, the
+> **Business use is still being confirmed.** Until this note is removed, the
 > permission for businesses in section 2 is not yet in effect, and personal use only applies.
 
 ## 1. Who can use the tracks
@@ -25,15 +25,13 @@ Anyone who owns a legal copy of Project CARS 2 may download the tracks and use t
 - Sell the tracks, put them behind a paywall, or bundle them with something you charge for.
 - Pass off the tracks, or a modified version of them, as your own work.
 
-## 4. Original authors and trademarks
+## 4. Trademarks
 
-Each track is a conversion of someone else's work, credited on the download page and in the README. The original
-authors keep all rights to their work, and these terms only pass on what they have allowed. Circuit names, sponsor
-boards and other logos that appear on the tracks belong to their owners, and these terms don't give you any rights
-to them.
+Circuit names, sponsor boards and other logos that appear on the tracks belong to their owners, and these terms
+don't give you any rights to them.
 
 Project CARS is a trademark of its owners. These tracks are fan-made and not affiliated with or endorsed by
-Slightly Mad Studios, Bandai Namco or Kunos Simulazioni.
+Slightly Mad Studios or Bandai Namco.
 
 ## 5. No warranty
 

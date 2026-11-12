@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PC2 Tracks</title>
-  <meta name="description" content="Assetto Corsa circuits converted for Project CARS 2. Free downloads, installed with JSGME.">
+  <meta name="description" content="Race tracks for Project CARS 2, with night lighting, rain-ready AI and working pit lanes. Free downloads, installed with JSGME.">
   <meta property="og:title" content="PC2 Tracks">
-  <meta property="og:description" content="Assetto Corsa circuits converted for Project CARS 2. Free downloads, installed with JSGME.">
+  <meta property="og:description" content="Race tracks for Project CARS 2, with night lighting, rain-ready AI and working pit lanes. Free downloads, installed with JSGME.">
   <meta property="og:image" content="images/hungaroring-1920.jpg">
   <meta name="theme-color" content="#E4EAEF">
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -186,7 +186,7 @@
         <div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-12">
           <h1 id="title" class="wide max-w-[13ch] text-[clamp(2.1rem,10.5vw,2.6rem)] font-extrabold text-white sm:text-6xl lg:text-[5.25rem]">Tracks for Project CARS&nbsp;2</h1>
           <p class="mt-5 max-w-[46ch] text-[1.05rem] leading-[1.6] text-white/85 sm:text-lg">
-            Circuits I've converted from Assetto Corsa and rebuilt with PC2's own materials, lighting, AI and pit lanes.
+            Circuits built for PC2 with its own materials, lighting, AI and pit lanes.
             Free to download and installed with JSGME.
           </p>
         </div>
@@ -248,8 +248,8 @@
   <footer class="mx-auto mt-28 max-w-6xl px-gutter pb-12 sm:px-8">
     <div class="border-t border-line pt-8 text-[0.9rem] leading-[1.7] text-slate sm:flex sm:items-start sm:justify-between sm:gap-10">
       <p class="max-w-[60ch]">
-        Fan-made conversions, free to download. Not affiliated with Slightly Mad Studios, Bandai Namco or Kunos Simulazioni.
-        Project CARS and its logo are trademarks of their owners, and the original track authors keep all rights to their work.
+        Fan-made tracks, free to download. Not affiliated with or endorsed by Slightly Mad Studios or Bandai Namco.
+        Project CARS and its logo are trademarks of their owners.
       </p>
       <ul class="mt-4 flex shrink-0 flex-wrap gap-x-5 gap-y-2 sm:mt-0 sm:flex-col sm:items-end">
         <li><a class="link" id="terms-link-footer" href="#">Terms of use</a></li>
@@ -448,7 +448,7 @@
             '. Zip file, ' + t.sizeMB + ' MB.';
           t.features.forEach(function (f) { q('.t-features').appendChild(li(f)); });
           t.notes.forEach(function (f) { q('.t-notes-list').appendChild(li(f)); });
-          q('.t-credit').textContent = t.credit;
+          if (t.credit) q('.t-credit').textContent = t.credit; else q('.t-credit').remove();
           if (t.gallery && t.gallery.length) buildGallery(q, t);
           list.appendChild(node);
         });

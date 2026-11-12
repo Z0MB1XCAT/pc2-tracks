@@ -1,4 +1,4 @@
-The Hungaroring, converted from racinjoe013's Assetto Corsa track to Project CARS 2.
+The Hungaroring for Project CARS 2, with day to night lighting, rain-ready AI and a working pit lane.
 
 **Download:** `Hungaroring-for-PC2-v1.2.zip` below (400 MB).
 
@@ -6,7 +6,7 @@ The Hungaroring, converted from racinjoe013's Assetto Corsa track to Project CAR
 
 1. Close the game and unzip the download anywhere.
 2. Double-click `Install.bat`. It finds your game, copies the track into MODS and adds it to the track list.
-3. Open JSGME and activate Bootfiles first, then "Hungaroring (AC conversion) v1.2". If you chose the optional HUD
+3. Open JSGME and activate Bootfiles first, then "Hungaroring v1.2". If you chose the optional HUD
    map, activate "Hungaroring HUD map (optional)" last.
 
 You need JSGME and "_Bootfiles for PC2" (V7.0.0.0 or newer). Manual install steps are in `READ ME FIRST.txt`.
@@ -28,7 +28,7 @@ You need JSGME and "_Bootfiles for PC2" (V7.0.0.0 or newer). Manual install step
 
 ### Good to know
 
-- You start in the pit box. The original garages are closed doors, so there is no garage spawn.
+- You start in the pit box. The garages are closed doors, so there is no garage spawn.
 - While the mod is active, the grey panels the pit crew puts around your car are hidden on every track.
 
 If something goes wrong, please [open an issue](https://github.com/Z0MB1XCAT/pc2-tracks/issues/new/choose).

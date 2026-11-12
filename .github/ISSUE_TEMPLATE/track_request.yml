@@ -1,5 +1,5 @@
 name: Track suggestion
-description: Suggest a track you'd like to see converted.
+description: Suggest a track you'd like to see in Project CARS 2.
 labels: ["track request"]
 body:
   - type: input
@@ -12,8 +12,8 @@ body:
   - type: input
     id: source
     attributes:
-      label: Which Assetto Corsa version?
-      description: A link to the AC mod you have in mind, if there is one.
+      label: Link
+      description: Anything that helps, like a track map or a mod you have in mind.
   - type: textarea
     id: why
     attributes:

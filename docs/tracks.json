@@ -5,8 +5,7 @@
       "slug": "hungaroring",
       "name": "Hungaroring",
       "place": "Mogyoród, Hungary",
-      "summary": "A full conversion of racinjoe013's Assetto Corsa track, with day to night lighting, an AI line that works in the rain and a pit lane with a working crew.",
-      "credit": "Original Assetto Corsa track by racinjoe013.",
+      "summary": "The Hungaroring for Project CARS 2, with day to night lighting, an AI line that works in the rain and a pit lane with a working crew.",
       "version": "1.2",
       "released": "2026-11-11",
       "tag": "hungaroring-v1.2",
@@ -39,7 +38,7 @@
         "Optional in-race HUD map"
       ],
       "notes": [
-        "You start in the pit box. The original garages are closed doors, so there is no garage spawn.",
+        "You start in the pit box. The garages are closed doors, so there is no garage spawn.",
         "While the mod is active, the grey panels the pit crew puts around your car are hidden on every track."
       ],
       "photo": "images/hungaroring-1920.jpg",

@@ -2,7 +2,7 @@
 
 # PC2 Tracks
 
-Assetto Corsa circuits converted for Project CARS 2 and rebuilt with PC2's own materials, lighting, AI and pit lanes.
+Race tracks for Project CARS 2, built with PC2's own materials, lighting, AI and pit lanes.
 Free to download and installed with JSGME.
 
 **Download page: https://z0mb1xcat.github.io/pc2-tracks/**
@@ -38,13 +38,10 @@ To remove a track, deactivate it in JSGME and run `Uninstall.bat`.
 [Open an issue](https://github.com/Z0MB1XCAT/pc2-tracks/issues/new/choose) and pick "Bug report". It asks for the
 track version and what happened, which is usually all I need. Track suggestions are welcome there too.
 
-## Credits
+## Disclaimer
 
-- Hungaroring: original Assetto Corsa track by racinjoe013.
-
-These are fan-made conversions, free to download. Not affiliated with Slightly Mad Studios, Bandai Namco or Kunos
-Simulazioni. Project CARS and its logo are trademarks of their owners, and the original track authors keep all
-rights to their work.
+These are fan-made tracks, free to download. Not affiliated with or endorsed by Slightly Mad Studios or Bandai
+Namco. Project CARS and its logo are trademarks of their owners.
 
 ## License
 
