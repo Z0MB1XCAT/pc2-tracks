@@ -26,6 +26,12 @@ Then open http://localhost:3000. Opening `docs/index.html` straight from disk wo
    python scripts/site_assets.py <track>.aiw <menu photo>.png "C:\Users\dexte\Documents\pc2-tracks\docs" <slug>
    ```
    It writes `docs/images/<slug>-1920.jpg` and `-960.jpg` and prints the `outline` block for `tracks.json`.
+   For the "In the game" strip, crop a few in-game PC2 screenshots (cockpit view) with `scripts/site_gallery.py`:
+   ```
+   python scripts/site_gallery.py "C:\Users\dexte\Documents\pc2-tracks\docs" <slug> "<screenshot>.png|<caption>" "<screenshot>.png|<caption>"
+   ```
+   It writes `docs/images/<slug>-shot-N-1600.jpg` / `-800.jpg` and prints the `gallery` block for `tracks.json`.
+   Leave `gallery` out and the strip simply doesn't show.
 3. Add an entry to `docs/tracks.json` (copy the Hungaroring one). `tag` and `file` must match the release exactly,
    and `sizeMB` is the zip size.
 4. Commit and push. The page updates by itself a minute or two later.

@@ -9,7 +9,7 @@
   <meta property="og:description" content="Assetto Corsa circuits converted for Project CARS 2. Free downloads, installed with JSGME.">
   <meta property="og:image" content="images/hungaroring-1920.jpg">
   <meta name="theme-color" content="#E4EAEF">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316212C'/%3E%3Crect x='14' y='6' width='4' height='20' rx='1' fill='%23C2352B'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" href="images/favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,6 +85,41 @@
     .link:focus-visible, .btn:focus-visible, summary:focus-visible, .nav-link:focus-visible {
       outline: 3px solid #16212C; outline-offset: 3px; }
 
+    /* PC2 logo is light artwork made for dark backgrounds, so it sits on an ink tile */
+    .logo-tile { display: inline-flex; align-items: center; padding: .45rem .7rem; border-radius: 10px;
+                 background: #16212C; box-shadow: 0 1px 2px rgba(22, 33, 44, .2), 0 6px 14px -6px rgba(31, 52, 77, .45);
+                 transition: transform .35s var(--spring); }
+    .brand { border-radius: 12px; }
+    .brand:hover .logo-tile { transform: translateY(-1px) rotate(-1deg); }
+    .brand:active .logo-tile { transform: scale(.97); }
+    .brand:focus-visible { outline: 3px solid #16212C; outline-offset: 4px; }
+
+    /* in-game screenshot strip */
+    .strip { scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #A9B6C2 transparent; overscroll-behavior-x: contain; }
+    .strip > * { scroll-snap-align: start; }
+    .shot { position: relative; display: block; overflow: hidden; border-radius: 16px; box-shadow: var(--shadow-raised); }
+    .shot img { transition: transform .6s var(--ease-out); }
+    .shot::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+                   background: linear-gradient(to top, rgba(0, 0, 0, .28), transparent 45%); }
+    .shot-tint { position: absolute; inset: 0; background: #2E4560; mix-blend-mode: multiply; opacity: .08; pointer-events: none; }
+    .shot:hover img { transform: scale(1.025); }
+    .shot:active img { transform: scale(1.01); }
+    .shot:focus-visible { outline: 3px solid #16212C; outline-offset: 3px; }
+    .arrow { display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 999px;
+             background: #F4F6F8; box-shadow: var(--shadow-raised); color: #16212C; transition: transform .3s var(--spring), opacity .2s; }
+    .arrow:hover { transform: translateY(-1px); }
+    .arrow:active { transform: scale(.94); }
+    .arrow:focus-visible { outline: 3px solid #16212C; outline-offset: 3px; }
+    .arrow[disabled] { opacity: .35; pointer-events: none; }
+
+    /* screenshot viewer */
+    dialog.viewer { max-width: min(96vw, 1600px); width: 100%; padding: 0; border: 0; background: transparent; }
+    dialog.viewer::backdrop { background: rgba(14, 22, 30, .9); }
+    .viewer-body { background: #16212C; border-radius: 18px; padding: .6rem .6rem .5rem;
+                   box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .7); }
+    dialog.viewer[open] .viewer-body { animation: viewer-in .4s var(--ease-out); }
+    @keyframes viewer-in { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: none; } }
+
     .nav-link { border-radius: 8px; padding: .35rem .6rem; position: relative; }
     .nav-link::after { content: ""; position: absolute; left: .6rem; right: .6rem; bottom: .2rem; height: 2px;
                        background: #C2352B; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--spring); }
@@ -115,21 +150,24 @@
     .step-num { font-variant-numeric: tabular-nums; }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-img, .outline-art, .chev, .btn, .nav-link::after { transition: none !important; }
+      .hero-img, .outline-art, .chev, .btn, .nav-link::after, .logo-tile, .shot img, .arrow { transition: none !important; }
       .hero-img, .outline-art { opacity: 1; transform: none; }
-      details[open] .reveal { animation: none; }
+      details[open] .reveal, dialog.viewer[open] .viewer-body { animation: none; }
+      .strip { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body class="min-h-screen antialiased">
 
   <header class="mx-auto flex max-w-6xl items-center justify-between px-gutter pt-5 pb-4 sm:px-8">
-    <a href="./" class="nav-link -ml-2 flex items-center gap-2.5" aria-label="PC2 Tracks, home">
-      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#16212C"/><rect x="14" y="6" width="4" height="20" rx="1" fill="#C2352B"/></svg>
-      <span class="wide text-[1.05rem] font-bold">PC2 Tracks</span>
+    <a href="./" class="brand -ml-1 flex items-center gap-3" aria-label="Project CARS 2 Tracks, home">
+      <span class="logo-tile">
+        <img src="images/pc2-logo.png" width="768" height="219" alt="" class="block h-[30px] w-auto sm:h-[40px]">
+      </span>
+      <span class="wide text-[1.15rem] font-bold sm:text-[1.25rem]">Tracks</span>
     </a>
     <nav class="flex items-center gap-1 text-[0.95rem] font-medium text-ink/80">
-      <a class="nav-link" href="#install">How to install</a>
+      <a class="nav-link whitespace-nowrap" href="#install"><span class="sm:hidden">Install</span><span class="hidden sm:inline">How to install</span></a>
       <a class="nav-link" id="repo-link" href="#">GitHub</a>
     </nav>
   </header>
@@ -211,16 +249,17 @@
     <div class="border-t border-line pt-8 text-[0.9rem] leading-[1.7] text-slate sm:flex sm:items-start sm:justify-between sm:gap-10">
       <p class="max-w-[60ch]">
         Fan-made conversions, free to download. Not affiliated with Slightly Mad Studios, Bandai Namco or Kunos Simulazioni.
-        The original track authors keep all rights to their work.
+        Project CARS and its logo are trademarks of their owners, and the original track authors keep all rights to their work.
       </p>
       <a class="link mt-4 inline-block sm:mt-0" id="repo-link-footer" href="#">Source on GitHub</a>
     </div>
   </footer>
 
   <template id="track-tpl">
-    <article class="grid items-stretch gap-6 lg:grid-cols-[5fr_7fr] lg:gap-10">
-      <figure class="raised relative flex flex-col overflow-hidden rounded-[22px] p-6 sm:p-10">
-        <div class="flex flex-1 items-center justify-center">
+    <article>
+    <div class="grid items-start gap-6 lg:grid-cols-[5fr_7fr] lg:gap-10">
+      <figure class="raised relative overflow-hidden rounded-[22px] p-6 sm:p-10 lg:sticky lg:top-6">
+        <div class="flex items-center justify-center">
         <svg class="outline-art block h-auto w-full max-w-[460px]" role="img">
           <title></title>
           <path class="runoff" fill="none" stroke="#4E6A38" stroke-opacity=".16" stroke-width="34" stroke-linejoin="round" stroke-linecap="round"/>
@@ -264,8 +303,37 @@
           <p class="t-credit mt-5 text-[0.9rem] text-slate"></p>
         </details>
       </div>
+    </div>
+
+      <section class="t-gallery mt-12 hidden" aria-label="Screenshots">
+        <div class="flex items-end justify-between gap-4">
+          <div>
+            <h4 class="semi-wide text-xl font-semibold">In the game</h4>
+            <p class="mt-1 text-[0.95rem] text-slate">From the cockpit in Project CARS 2. Click a shot to see it larger.</p>
+          </div>
+          <div class="hidden shrink-0 gap-2 sm:flex">
+            <button type="button" class="arrow t-prev" aria-label="Previous screenshots">
+              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="arrow t-next" aria-label="Next screenshots">
+              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <ul class="strip t-strip -mx-gutter mt-5 flex scroll-px-gutter gap-4 overflow-x-auto px-gutter pb-4 sm:mx-0 sm:scroll-px-0 sm:px-0"></ul>
+      </section>
     </article>
   </template>
+
+  <dialog class="viewer" aria-label="Screenshot">
+    <div class="viewer-body">
+      <img class="viewer-img block h-auto w-full rounded-xl" alt="">
+      <div class="mt-3 flex items-start justify-between gap-6 px-1 text-white">
+        <p class="viewer-cap text-[0.95rem] text-white/85"></p>
+        <button type="button" class="viewer-close nav-link shrink-0 font-medium text-white">Close</button>
+      </div>
+    </div>
+  </dialog>
 
   <script>
     (function () {
@@ -279,6 +347,58 @@
       var list = document.getElementById('tracks');
 
       function li(text) { var el = document.createElement('li'); el.textContent = text; el.className = 'flex gap-2.5 before:mt-[0.7em] before:h-1 before:w-1 before:shrink-0 before:rounded-full before:bg-current before:opacity-50 before:content-[\'\']'; return el; }
+
+      // screenshot viewer (native <dialog>: Esc closes it, focus returns to the shot that opened it)
+      var viewer = document.querySelector('dialog.viewer');
+      var vImg = viewer.querySelector('.viewer-img'), vCap = viewer.querySelector('.viewer-cap');
+      viewer.querySelector('.viewer-close').addEventListener('click', function () { viewer.close(); });
+      viewer.addEventListener('click', function (e) { if (e.target === viewer) viewer.close(); });
+      function openShot(s) {
+        vImg.src = s.src; vImg.alt = s.alt; vImg.width = s.width; vImg.height = s.height;
+        vCap.textContent = s.alt;
+        viewer.showModal();
+      }
+
+      function buildGallery(q, t) {
+        var section = q('.t-gallery'), strip = q('.t-strip');
+        section.classList.remove('hidden');
+        t.gallery.forEach(function (s) {
+          var item = document.createElement('li');
+          item.className = 'w-[86%] shrink-0 sm:w-[min(72%,760px)]';
+          var a = document.createElement('a');
+          a.className = 'shot';
+          a.href = s.src;
+          a.setAttribute('aria-label', 'View larger: ' + s.alt);
+          var img = document.createElement('img');
+          img.src = s.small; img.srcset = s.small + ' 800w, ' + s.src + ' 1600w';
+          img.sizes = '(min-width: 640px) 760px, 86vw';
+          img.width = s.width; img.height = s.height; img.alt = s.alt; img.loading = 'lazy'; img.decoding = 'async';
+          img.className = 'block h-auto w-full';
+          var tint = document.createElement('span'); tint.className = 'shot-tint';
+          a.appendChild(img); a.appendChild(tint);
+          a.addEventListener('click', function (e) { e.preventDefault(); openShot(s); });
+          var cap = document.createElement('p');
+          cap.className = 'mt-2.5 text-[0.9rem] text-slate'; cap.textContent = s.alt;
+          item.appendChild(a); item.appendChild(cap);
+          strip.appendChild(item);
+        });
+        var prev = q('.t-prev'), next = q('.t-next');
+        function step(dir) {
+          var first = strip.firstElementChild;
+          var w = first ? first.getBoundingClientRect().width + 16 : strip.clientWidth;
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          strip.scrollBy({ left: dir * w, behavior: reduce ? 'auto' : 'smooth' });
+        }
+        function sync() {
+          prev.disabled = strip.scrollLeft < 4;
+          next.disabled = strip.scrollLeft + strip.clientWidth > strip.scrollWidth - 4;
+        }
+        prev.addEventListener('click', function () { step(-1); });
+        next.addEventListener('click', function () { step(1); });
+        strip.addEventListener('scroll', sync, { passive: true });
+        window.addEventListener('resize', sync);
+        setTimeout(sync, 0);
+      }
 
       function render(data) {
         var repo = data.repo;
@@ -323,6 +443,7 @@
           t.features.forEach(function (f) { q('.t-features').appendChild(li(f)); });
           t.notes.forEach(function (f) { q('.t-notes-list').appendChild(li(f)); });
           q('.t-credit').textContent = t.credit;
+          if (t.gallery && t.gallery.length) buildGallery(q, t);
           list.appendChild(node);
         });
         if (/^YOUR-GITHUB-NAME\//.test(repo)) console.warn('tracks.json: set "repo" to your GitHub name/repo so the download links work.');
