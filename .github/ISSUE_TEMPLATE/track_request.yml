@@ -1,0 +1,21 @@
+name: Track suggestion
+description: Suggest a track you'd like to see converted.
+labels: ["track request"]
+body:
+  - type: input
+    id: track
+    attributes:
+      label: Track
+      placeholder: Spa-Francorchamps
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Which Assetto Corsa version?
+      description: A link to the AC mod you have in mind, if there is one.
+  - type: textarea
+    id: why
+    attributes:
+      label: Anything else?
+      description: A layout you care about, or why you'd like it in PC2.

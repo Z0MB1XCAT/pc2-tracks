@@ -1,48 +1,49 @@
+![Tracks for Project CARS 2](.github/banner.jpg)
+
 # PC2 Tracks
 
-Download page for my Assetto Corsa track conversions for Project CARS 2. The site lives in `docs/` and is served by
-GitHub Pages. The track zips themselves are not in this repo, they are attached to GitHub Releases (one release per
-track version), because the files are far bigger than git allows.
+Assetto Corsa circuits converted for Project CARS 2 and rebuilt with PC2's own materials, lighting, AI and pit lanes.
+Free to download and installed with JSGME.
 
-## Preview the site on your PC
+**Download page: https://z0mb1xcat.github.io/pc2-tracks/**
 
-```
-node serve.mjs
-```
+## Tracks
 
-Then open http://localhost:3000. Opening `docs/index.html` straight from disk won't load the track list, so use the server.
+| Track | Location | Version | Download |
+| --- | --- | --- | --- |
+| Hungaroring | Mogyoród, Hungary | 1.2 | [Hungaroring-for-PC2-v1.2.zip](https://github.com/Z0MB1XCAT/pc2-tracks/releases/download/hungaroring-v1.2/Hungaroring-for-PC2-v1.2.zip) (400 MB) |
 
-`node screenshot.mjs http://localhost:3000 [label] [width] [height]` saves a screenshot to `temporary screenshots/`
-(phone widths like 390 work too, as long as `serve.mjs` is running).
+Every version is also listed on the [Releases](https://github.com/Z0MB1XCAT/pc2-tracks/releases) page, with what changed.
 
-## Adding a track or a new version
+## What you need
 
-1. Zip the track package and create a release for it, for example:
-   ```
-   gh release create spa-v1.0 Spa-for-PC2-v1.0.zip --title "Spa v1.0" --notes "Install: unzip, run Install.bat, activate in JSGME."
-   ```
-2. Make the web images and the circuit outline with `scripts/site_assets.py` from the conversion project:
-   ```
-   python scripts/site_assets.py <track>.aiw <menu photo>.png "C:\Users\dexte\Documents\pc2-tracks\docs" <slug>
-   ```
-   It writes `docs/images/<slug>-1920.jpg` and `-960.jpg` and prints the `outline` block for `tracks.json`.
-   For the "In the game" strip, crop a few in-game PC2 screenshots (cockpit view) with `scripts/site_gallery.py`:
-   ```
-   python scripts/site_gallery.py "C:\Users\dexte\Documents\pc2-tracks\docs" <slug> "<screenshot>.png|<caption>" "<screenshot>.png|<caption>"
-   ```
-   It writes `docs/images/<slug>-shot-N-1600.jpg` / `-800.jpg` and prints the `gallery` block for `tracks.json`.
-   Leave `gallery` out and the strip simply doesn't show.
-3. Add an entry to `docs/tracks.json` (copy the Hungaroring one). `tag` and `file` must match the release exactly,
-   and `sizeMB` is the zip size.
-4. Commit and push. The page updates by itself a minute or two later.
+- Project CARS 2 on Steam
+- JSGME (the mod manager) in your Project CARS 2 folder
+- The "_Bootfiles for PC2" mod (V7.0.0.0 or newer) in your MODS folder
 
-For a new version of an existing track, make a new release with a new tag (for example `hungaroring-v1.3`) and change
-`version`, `released`, `tag`, `file` and `sizeMB` in its entry.
+## Installing a track
 
-## Files
+1. Close the game and unzip the download anywhere.
+2. Double-click `Install.bat`. It finds your game, copies the track into MODS and adds it to the track list.
+3. Open JSGME and activate Bootfiles first, then the track. If you chose the optional HUD map, activate that last.
 
-- `docs/index.html`: the page (Tailwind from its CDN, fonts from Google Fonts, no build step)
-- `docs/tracks.json`: the track list, plus `repo`, which the download links are built from
-- `docs/images/`: track photos
-- `docs/.nojekyll`: tells GitHub Pages to serve the files as they are
-- `serve.mjs`, `screenshot.mjs`: local preview tools, not used by the live site
+`Install.bat` runs a plain text PowerShell script (`tools\Hungaroring-Installer.ps1` in the download), so you can
+read exactly what it does before running it. If you would rather install by hand, `READ ME FIRST.txt` in each
+download has the manual steps.
+
+To remove a track, deactivate it in JSGME and run `Uninstall.bat`.
+
+## Found a problem?
+
+[Open an issue](https://github.com/Z0MB1XCAT/pc2-tracks/issues/new/choose) and pick "Bug report". It asks for the
+track version and what happened, which is usually all I need. Track suggestions are welcome there too.
+
+## Credits
+
+- Hungaroring: original Assetto Corsa track by racinjoe013.
+
+These are fan-made conversions, free to download. Not affiliated with Slightly Mad Studios, Bandai Namco or Kunos
+Simulazioni. Project CARS and its logo are trademarks of their owners, and the original track authors keep all
+rights to their work.
+
+Maintainer notes (adding tracks, updating the site) are in [MAINTAINING.md](MAINTAINING.md).

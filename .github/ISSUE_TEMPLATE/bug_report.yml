@@ -1,0 +1,62 @@
+name: Bug report
+description: Something is wrong with a track, or the game crashes or won't load it.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this. The more of these you can fill in, the quicker I can find the problem.
+  - type: dropdown
+    id: track
+    attributes:
+      label: Track
+      options:
+        - Hungaroring
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Track version
+      description: It's in the mod's folder name in JSGME, for example "v1.2".
+      placeholder: v1.2
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you were doing and what went wrong. Screenshots help a lot, you can paste them straight in here.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How can I make it happen?
+      description: For example "Private Testing, rain, 20 AI, crashes at 25 % of the loading bar".
+  - type: dropdown
+    id: installed
+    attributes:
+      label: How did you install it?
+      options:
+        - Install.bat
+        - By hand (READ ME FIRST.txt)
+    validations:
+      required: true
+  - type: input
+    id: bootfiles
+    attributes:
+      label: Bootfiles version
+      placeholder: V7.0.0.0
+  - type: textarea
+    id: mods
+    attributes:
+      label: Other active mods
+      description: The list of activated mods in JSGME, top to bottom.
+  - type: textarea
+    id: crash
+    attributes:
+      label: Crash file (if the game crashed)
+      description: |
+        Project CARS 2 saves crash files as pCARS2AVX....dmp in your Temp folder (press Win+R and type %TEMP%).
+        They are large, so zip the newest one and drag the zip in here.
